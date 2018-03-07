@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <title>L200150087 - Anggraeni Triningsih</title>
+    <style>
+
+      /* Always set the map height explicitly to define the size of the div
+
+       * element that contains the map. */
+
+      #map {
+
+        height: 400px;
+        width: 100px;
+
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+      }
+
+    </style>
+  </head>
+
+  <body align= 'center'>
+
+    <h1>Mata Kuliah Sistem Informasi Geografis</h1>
+    <h3>Kost Serasi 4</h3>
+    <h3>Kelurahan Kerten, Pabelan, Sukoharjo</h3>
+
+    <center>
+
+      <div id="map"></div>
+
+    </center>
+
+    <script>
+
+      function initMap() {
+      	var kostserasi4 = {lat: -7.554232, lng:  110.768632};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: kostserasi4
+
+        });
+
+        var marker = new google.maps.Marker({
+          position: kostserasi4,
+          map: map,
+          title: 'Kost serasi 4'
+
+        });
+
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC2ZJ3oa0h0vVo25quMU0TNmuCN7nCiBE&callback=initMap">
+
+    </script>
+  </body>
+</html>
