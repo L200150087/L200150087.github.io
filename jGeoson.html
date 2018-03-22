@@ -32,7 +32,9 @@
 
   </head>
 
-  <body>
+  <body align="center">
+
+    <h2>Lokasi Gempa Bumi di Sekitar Wilayah Indonesia</h2>
 
     <div id="map"></div>
 
@@ -44,9 +46,9 @@
 
         map = new google.maps.Map(document.getElementById('map'), {
 
-          zoom: 2,
+          zoom: 5,
 
-          center: new google.maps.LatLng(2.8,-187.3),
+          center: {lat: -3.0467105, lng: 118.2843992},
 
           mapTypeId: 'terrain'
 
@@ -58,6 +60,8 @@
 
         var script = document.createElement('script');
 
+
+
         // This example uses a local copy of the GeoJSON stored at
 
         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
@@ -66,31 +70,49 @@
 
         document.getElementsByTagName('head')[0].appendChild(script);
 
+
+
+        map.data.setStyle(function(feature) {
+
+          var magnitude = feature.getProperty('mag');
+
+          return {
+
+            icon: getCircle(magnitude)
+
+          };
+
+        });
+
       }
 
 
 
-      // Loop through the results array and place a marker for each
+      function getCircle(magnitude) {
 
-      // set of coordinates.
+        return {
 
-      window.eqfeed_callback = function(results) {
+          path: google.maps.SymbolPath.CIRCLE,
 
-        for (var i = 0; i < results.features.length; i++) {
+          fillColor: 'red',
 
-          var coords = results.features[i].geometry.coordinates;
+          fillOpacity: .2,
 
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          scale: Math.pow(2, magnitude) / 2,
 
-          var marker = new google.maps.Marker({
+          strokeColor: 'white',
 
-            position: latLng,
+          strokeWeight: .5
 
-            map: map
+        };
 
-          });
+      }
 
-        }
+
+
+      function eqfeed_callback(results) {
+
+        map.data.addGeoJson(results);
 
       }
 
@@ -105,3 +127,4 @@
   </body>
 
 </html>
+   
