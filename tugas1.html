@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>AddMarker</title></head>
+<body>
+
+<h1>Lokasi Kost Serasi 4</h1>
+
+<div id="map" style="width:100%;height:600px;"></div>
+
+<script>
+function myMap() {
+  var myCenter = new google.maps.LatLng(-7.554232,110.768632);
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {center: myCenter, zoom: 16.8};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  var marker = new google.maps.Marker({
+  position: myCenter,
+  animation: google.maps.Animation.BOUNCE
+  });
+  marker.setMap(map);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC2ZJ3oa0h0vVo25quMU0TNmuCN7nCiBE&callback=myMap"></script>
+
+</body>
+</html>
