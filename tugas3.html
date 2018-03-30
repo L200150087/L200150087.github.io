@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>10 Kecamatan di Kab.Sukoharjo</h1>
+    <div id="map"></div>
+    <script>
+      var citymap = {
+        weru: {
+          center: {lat: -7.7862525, lng: 110.7218202},
+          population: 310390
+        },
+        bulu: {
+          center: {lat: -7.6722156, lng: 110.9240918},
+          population: 247830
+        },
+        tawangsari: {
+          center: {lat: -7.7270725, lng: 110.7522103 },
+          population: 221010
+        },
+        nguter: {
+          center: {lat: -7.7424125, lng: 110.8443783},
+          population: 219690
+        },
+       bendosari: {
+          center: {lat: -7.6823565, lng: 110.8561687 },
+          population: 212580
+        },
+       polokarto: {
+          center: {lat: -7.6460545, lng: 110.8600953},
+          population: 180070
+        },
+       mojolaban: {
+          center: {lat: -7.5963645, lng: 110.8366173 },
+          population: 182310
+        },
+       grogol: {
+          center: {lat:-7.6063396, lng: 110.7830863 },
+          population: 165670
+        },
+       baki: {
+          center: {lat: -7.6057415, lng: 110.7413253},
+          population: 151800 
+        },
+        gatak: {
+          center: {lat: -7.5931495,lng: 110.7010338},
+          population: 148900
+        }
+      };
+
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: {lat: -7.5592837, lng: 110.7303393},
+          mapTypeId: 'terrain'
+        });
+
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#33691E',
+            strokeOpacity: 0.5,
+            strokeWeight: 1,
+            fillColor: '#76FF03',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: Math.sqrt(citymap[city].population) * 5
+          });
+        }
+      }
+    </script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC2ZJ3oa0h0vVo25quMU0TNmuCN7nCiBE&callback=initMap">
+    </script>
+  </body>
+</html>
